@@ -7,30 +7,39 @@ O programa não deve aceitar idades negativas. */
 int main() {
     int idade, soma = 0, contPessoas = 0;
 
-    while(1) {
-        printf("Digite a idade (ou 0 para encerrar): ");
-        scanf("%d", &idade);
+    printf("Este programa calcula a média das idades de um grupo de pessoas.\n");
+    printf("Digite as idades (digite 0 para encerrar):\n");
+
+    while (1) {
+        printf("Idade: ");
+        
+        // Verificando se a entrada é um número válido
+        if (scanf("%d", &idade) != 1) {
+            printf("Entrada inválida! Por favor, insira um número inteiro.\n");
+            while (getchar() != '\n'); // Limpa o buffer de entrada
+            continue; // Solicita novamente a entrada
+        }
 
         if (idade == 0) {
-            break; // encerra o laço
+            break; // Encerra o laço se o usuário digitar 0
         }
 
         if (idade < 0) {
-            printf("Não existe idade negativa! Tente novamente... \n");
-            continue;
+            printf("Idade negativa não é válida! Tente novamente.\n");
+            continue; // Ignora a entrada negativa e pede novamente
         }
 
-        soma += idade;
-        contPessoas++;
+        soma += idade;   // Soma a idade informada
+        contPessoas++;   // Conta o número de pessoas válidas
     }
 
     if (contPessoas > 0) {
-        float media = (float) soma / contPessoas;
-        printf("Media das idades: %.2f\n", media);
+        // Calcula a média das idades
+        float media = (float)soma / contPessoas;
+        printf("A média das idades é: %.2f\n", media);
     } else {
-        printf("Nenhuma idade foi fornecida.\n");
+        printf("Nenhuma idade válida foi fornecida.\n");
     }
-
 
     return 0;
 }
