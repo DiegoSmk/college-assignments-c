@@ -1,35 +1,53 @@
 #include<stdio.h>
 
-float calcularMassa(float quantidadeA, float quantidadeB) {
-    const float mA = 321.43;
+/**
+ * Desafio Proposto:
+ * 
+ * Implementar uma solução para auxiliar uma equipe de química no cálculo da massa resultante de uma reação química.
+ * O programa deve:
+ * - Solicitar ao usuário a quantidade em mol dos componentes A e B.
+ * - Calcular a massa total da reação utilizando uma função que leva em consideração as massas molares dos componentes.
+ * - Exibir os valores de referência fornecidos e a massa calculada.
+ * 
+ * Objetivo:
+ * Demonstrar o uso de funções, manipulação de constantes e cálculos químicos básicos em C.
+ */
 
+/**
+ * Função para calcular a massa total da reação química.
+ * 
+ * @param a Quantidade em mol do componente A.
+ * @param b Quantidade em mol do componente B.
+ * @return A massa total do composto resultante em g/mol.
+ */
+float calcularMassa(float a, float b) {
+    // Massas molares dos componentes A e B
+    const float mA = 321.43;
     const float mB = 150.72;
 
-    printf("\n mol A : mol B ");
+    // Exibe valores de referência fornecidos
+    printf("\nReferências: mol A : mol B");
+    printf("\n1,2 : 1,0 \t= %f g/mol", 1.2 * mA + 1 * mB);
+    printf("\n1,4 : 1,0 \t= %f g/mol", 1.4 * mA + 1 * mB);
+    printf("\n1,6 : 1,0 \t= %f g/mol", 1 * mA + 1.6 * mB);
 
-    printf("\n 1,2 : 1,0 \t= %f",1.2*mA + 1*mB);
+    // Calcula a massa total com base nas quantidades em mol
+    return (a * mA) + (b * mB);
+}
 
-    printf("\n 1,4 : 1,0 \t= %f",1.4*mA + 1*mB);
-
-    printf("\n 1,6 : 1,0 \t= %f",1*mA + 1.6*mB);
-
-    return (quantidadeA * mA ) + (quantidadeB * mB);
-
-};
 
 int main() {
-    float quantidadeA = 0, quantidadeB = 0;
-    float resultado = 0;
+    float a = 0, b = 0, resultado = 0;
 
-    printf("Digite a quantidade de A: ");
-    scanf("%f", &quantidadeA);
+    // Solicita ao usuário as quantidades em mol dos componentes A e B
+    printf("\nDigite as quantidades em mol dos elementos A e B: ");
+    scanf("%f %f", &a, &b);
 
-    printf("Digite a quantidade de B: ");
-    scanf("%f", &quantidadeB);
+    // Chama a função calcularMassa para obter o resultado
+    resultado = calcularMassa(a, b);
 
-    resultado = calcularMassa(quantidadeA, quantidadeB);
-
-    printf("\n\n A massa final do composto e %.2f g/mol\n ", resultado);
+    // Exibe a massa total calculada
+    printf("\n\nMassa final do composto = %.2f g/mol\n", resultado);
 
     return 0;
-};
+}
